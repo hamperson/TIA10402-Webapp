@@ -1,6 +1,7 @@
 package com.chumore.orderitem.model;
 
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 
 
 
@@ -10,6 +11,9 @@ public class OrderItemVO {
 	private String memo;
 	private Timestamp createdDatetime;
 	private Timestamp updatedDatetime;
+	
+	
+	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	
 	public Integer getOrderItemId() {
 		return orderItemId;
@@ -40,6 +44,14 @@ public class OrderItemVO {
 	}
 	public void setUpdatedDatetime(Timestamp updatedDatetime) {
 		this.updatedDatetime = updatedDatetime;
+	}
+	
+	public String getFormatCreatedDatetime() {
+		return createdDatetime.toLocalDateTime().format(FORMATTER);
+	}
+	
+	public String getFormatUpdatedDatetime() {
+		return updatedDatetime.toLocalDateTime().format(FORMATTER);
 	}
 	
 }

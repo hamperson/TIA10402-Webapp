@@ -14,7 +14,7 @@
 <title>所有點餐資料</title>
 <style>
 table#table-1 {
-	background-color: #CCCCFF;
+	background-color: rgb(189, 231, 237);
 	border: 2px solid black;
 	text-align: center;
 }
@@ -82,8 +82,8 @@ th, td {
 				<td>${orderItemVO.orderItemId}</td>
 				<td>${orderItemVO.orderId}</td>
 				<td>${orderItemVO.memo}</td>
-				<td>${orderItemVO.createdDatetime}</td>
-				<td>${orderItemVO.updatedDatetime}</td>
+				<td>${orderItemVO.formatCreatedDatetime}</td>
+				<td>${orderItemVO.formatUpdatedDatetime}</td>
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/orderItem.do"

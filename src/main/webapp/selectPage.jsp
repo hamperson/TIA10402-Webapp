@@ -11,7 +11,7 @@
 <style>
 table#table-1 {
 	width: 450px;
-	background-color: #CCCCFF;
+	background-color: rgb(189, 231, 237);
 	margin-top: 5px;
 	margin-bottom: 10px;
     border: 3px ridge Gray;
@@ -57,7 +57,7 @@ table#table-1 {
   <li>
     <FORM METHOD="post" ACTION="orderItem.do" >
         <b>輸入點餐編號:</b>
-        <input type="text" name="orderItemId">
+        <input type="text" style="width: 59px" name="orderItemId">
         <input type="hidden" name="action" value="getOne_For_Display">
         <input type="submit" value="送出">
     </FORM>
@@ -69,6 +69,7 @@ table#table-1 {
      <FORM METHOD="post" ACTION="orderItem.do" >
        <b>選擇點餐編號:</b>
        <select size="1" name="orderItemId">
+       <option selected value="">請選擇
          <c:forEach var="orderItemVO" items="${orderItemSvc.all}" > 
           <option value="${orderItemVO.orderItemId}">${orderItemVO.orderItemId}
          </c:forEach>   
@@ -82,6 +83,7 @@ table#table-1 {
      <FORM METHOD="post" ACTION="orderItem.do" >
        <b>選擇訂單編號:</b>
        <select size="1" name="orderId">
+       <option selected value="">請選擇
          <c:forEach var="orderId" items="${orderItemSvc.orderIdList}" > 
           <option value="${orderId}">${orderId}
          </c:forEach>   

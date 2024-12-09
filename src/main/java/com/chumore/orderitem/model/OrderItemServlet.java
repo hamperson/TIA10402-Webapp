@@ -118,7 +118,6 @@ public class OrderItemServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>(); // ??
 			req.setAttribute("errorMsgs", errorMsgs);
 
-
 			String orderIdS = req.getParameter("orderId");
 			Integer orderId = null;
 
@@ -149,42 +148,42 @@ public class OrderItemServlet extends HttpServlet {
 				failureView.forward(req, res);
 				return;
 			}
-			
+
 			/* 新增 */
 			OrderItemService orderItemSvc = new OrderItemService();
 			orderItemSvc.addOrderItem(orderId, memo, createdDatetime, updatedDatetime);
-			
+
 			String url = "/listAllOrderItem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 		}
-		
+
 		if ("getOne_For_Update".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>(); // ??
 			req.setAttribute("errorMsgs", errorMsgs);
-		
-			Integer orderItemId =Integer.valueOf(req.getParameter("orderItemId"));
+
+			Integer orderItemId = Integer.valueOf(req.getParameter("orderItemId"));
 			OrderItemService orderItemSvc = new OrderItemService();
 			OrderItemVO orderItemVO = orderItemSvc.getOneOrderItem(orderItemId);
-			
+
 			req.setAttribute("orderItemVO", orderItemVO);
-			
+
 			String url = "/updatePage.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
-			
+
 		}
-		
-		/* 修改資料 */
+
+		/* 修改點餐資料 */
 		if ("update".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>(); // ??
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+
 			String orderItemIdS = req.getParameter("orderItemId");
 			String orderIdS = req.getParameter("orderId");
 			String memo = req.getParameter("memo");
 			String createdDatetime = req.getParameter("createdDatetime");
-			
+
 			Integer orderId = null;
 
 			if (orderIdS == null || orderIdS.trim().length() == 0) {
@@ -199,7 +198,6 @@ public class OrderItemServlet extends HttpServlet {
 			} else {
 				orderItemId = Integer.valueOf(orderItemIdS);
 			}
-			
 
 			java.sql.Timestamp cdt = Timestamp.valueOf(createdDatetime);
 			java.sql.Timestamp updatedDatetime = Timestamp.from(Instant.now());
@@ -217,33 +215,32 @@ public class OrderItemServlet extends HttpServlet {
 				failureView.forward(req, res);
 				return;
 			}
-			
-			
-			/*  */
+
+			/* 修改 */
 			OrderItemService orderItemSvc = new OrderItemService();
 			orderItemVO = orderItemSvc.updateOrderItem(orderItemId, orderId, memo, cdt, updatedDatetime);
-			
+
 			req.setAttribute("orderItemVO", orderItemVO);
 			String url = "/listOneOrderItem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 		}
-		
+
 		/* 刪除 */
 		if ("delete".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>(); // ??
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+
 			Integer orderItemId = Integer.valueOf(req.getParameter("orderItemId"));
-			
+
 			OrderItemService orderItemSvc = new OrderItemService();
 			orderItemSvc.deleteItem(orderItemId);
-			
+
 			String url = "/listAllOrderItem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 		}
-		 
+
 	}
 
 }

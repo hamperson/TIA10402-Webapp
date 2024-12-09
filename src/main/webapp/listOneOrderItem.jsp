@@ -17,7 +17,7 @@ OrderItemVO orderItemVO = (OrderItemVO) request.getAttribute("orderItemVO");
 <title>依點餐Id查詢資料 -listOneOrderItem</title>
 <style>
 table#table-1 {
-	background-color: #CCCCFF;
+	background-color: rgb(189, 231, 237);
 	border: 2px solid black;
 	text-align: center;
 }
@@ -74,16 +74,16 @@ th, td {
 			<th>建立時間</th>
 			<th>更新時間</th>
 		</tr>
-	
-					<tr>
-						<td>${orderItemVO.orderItemId}</td>
-						<td>${orderItemVO.orderId}</td>
-						<td>${orderItemVO.memo}</td>
-						<td>${orderItemVO.createdDatetime}</td>
-						<td>${orderItemVO.updatedDatetime}</td>
-					</tr>
+
+		<tr>
+			<td>${orderItemVO.orderItemId}</td>
+			<td>${orderItemVO.orderId}</td>
+			<td>${orderItemVO.memo}</td>
+			<td>${orderItemVO.formatCreatedDatetime}</td>
+			<td>${orderItemVO.formatUpdatedDatetime}</td>
+		</tr>
 
 	</table>
-
+	<a href="listAllOrderItem.jsp">查看所有清單</a>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class OrderItemJDBCDAO implements OrderItemDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO order_item (order_id, memo, created_datetime, updated_datetime)VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT order_item_id, order_id, memo, created_datetime, updated_datetime FROM order_item order by order_item_id";
 	private static final String GET_ALL_ORDERID_STMT = "SELECT distinct oi.order_id FROM order_item oi order by order_id";
-	private static final String GET_ALL_ORDERITIEMLIST_STMT = "SELECT order_item_id, order_id, memo, created_datetime, updated_datetime FROM order_item where order_id = ?;";
+	private static final String GET_ALL_ORDERITIEMLIST_STMT = "SELECT order_item_id, order_id, memo, created_datetime, updated_datetime FROM order_item where order_id = ?";
 	private static final String GET_ONE_STMT = "SELECT order_item_id, order_id, memo, created_datetime, updated_datetime FROM order_item where order_item_id = ?";
 	private static final String DELETE = "DELETE FROM order_item where order_item_id =?";
 	private static final String UPDATE = "UPDATE order_item set order_id=?, memo=?, updated_datetime=? where order_item_id =?";
@@ -45,9 +45,7 @@ public class OrderItemJDBCDAO implements OrderItemDAO_interface {
 
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured." + se.getLocalizedMessage());
 		} finally {
@@ -75,9 +73,7 @@ public class OrderItemJDBCDAO implements OrderItemDAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured." + se.getLocalizedMessage());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} finally {
 			close(pstmt, con);
 		}
@@ -101,9 +97,7 @@ public class OrderItemJDBCDAO implements OrderItemDAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured." + se.getLocalizedMessage());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} finally {
 			close(pstmt, con);
 		}
@@ -178,9 +172,7 @@ public class OrderItemJDBCDAO implements OrderItemDAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured." + se.getLocalizedMessage());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} finally {
 			close(rs, pstmt, con);
 		}
@@ -212,9 +204,7 @@ public class OrderItemJDBCDAO implements OrderItemDAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured." + se.getLocalizedMessage());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} finally {
 			close(rs, pstmt, con);
 		}
@@ -254,9 +244,7 @@ public class OrderItemJDBCDAO implements OrderItemDAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured." + se.getLocalizedMessage());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} finally {
 			close(rs, pstmt, con);
 		}

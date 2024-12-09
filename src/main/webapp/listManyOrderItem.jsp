@@ -20,7 +20,7 @@ pageContext.setAttribute("orderItemList",orderItemList);
 <title>訂單編號查詢點餐資料 -listManyOrderItem</title>
 <style>
 	table#table-1 {
-		background-color: #CCCCFF;
+		background-color: rgb(189, 231, 237);
 		border: 2px solid black;
 		text-align: center;
 	}
@@ -82,8 +82,8 @@ pageContext.setAttribute("orderItemList",orderItemList);
 				<td>${orderItemVO.orderItemId}</td>
 				<td>${orderItemVO.orderId}</td>
 				<td>${orderItemVO.memo}</td>
-				<td>${orderItemVO.createdDatetime}</td>
-				<td>${orderItemVO.updatedDatetime}</td>
+				<td>${orderItemVO.formatCreatedDatetime}</td>
+				<td>${orderItemVO.formatUpdatedDatetime}</td>
 			</tr>
 		</c:forEach>
 	</table>

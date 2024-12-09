@@ -17,7 +17,7 @@ OrderItemVO orderItemVO = (OrderItemVO) request.getAttribute("orderItemVO"); //E
 
 <style>
 table#table-1 {
-	background-color: #CCCCFF;
+	background-color: rgb(189, 231, 237);
 	border: 2px solid black;
 	text-align: center;
 }
@@ -60,12 +60,8 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>點餐資料新增</h3>
-			</td>
-			<td>
-				<h4>
-					<a href="selectPage.jsp">回首頁</a>
-				</h4>
+				<h3 style="display: inline-block;">點餐資料新增</h3> 
+				<a href="selectPage.jsp" style="display: inline-block; margin-left:20px;">回首頁</a>
 			</td>
 		</tr>
 	</table>

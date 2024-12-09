@@ -16,7 +16,7 @@ OrderItemVO orderItemVO = (OrderItemVO) request.getAttribute("orderItemVO");
 
 <style>
 table#table-1 {
-	background-color: #CCCCFF;
+	background-color: rgb(189, 231, 237);
 	border: 2px solid black;
 	text-align: center;
 }
@@ -80,6 +80,8 @@ th, td {
 		</ul>
 	</c:if>
 
+
+	
 	<FORM METHOD="post" ACTION="orderItem.do" name="form1">
 		<table>
 			<tr>
@@ -88,8 +90,13 @@ th, td {
 			</tr>
 			<tr>
 				<td>訂單ID:</td>
-				<td><input type="TEXT" name="orderId"
-					value="${orderItemVO.orderId}" size="45" /></td>
+				<td><select size=1 name="orderId">
+				<option selected value="${orderItemVO.orderId}">${orderItemVO.orderId}
+				<c:forEach var="orderId" items="${orderItemSvc.orderIdList}">
+				<option value="${orderId}">${orderId}
+				</c:forEach>
+				</select>
+				</td>
 			</tr>
 			<tr>
 				<td>點餐備註:</td>
@@ -98,11 +105,11 @@ th, td {
 			</tr>
 			<tr>
 				<td>建立時間:</td>
-				<td>${orderItemVO.createdDatetime}</td>
+				<td>${orderItemVO.formatCreatedDatetime}</td>
 			</tr>
 			<tr>
 				<td>更新時間:</td>
-				<td>${orderItemVO.updatedDatetime}</td>
+				<td>${orderItemVO.formatUpdatedDatetime}</td>
 			</tr>
 
 

@@ -9,6 +9,8 @@ public class OrderItemService {
 		dao = new OrderItemJDBCDAO();
 	}
 	
+	
+	
 	public OrderItemVO addOrderItem(Integer orderId, String memo, java.sql.Timestamp createdDatetime, java.sql.Timestamp updatedDatetime) {
 		OrderItemVO orderItemVO = new OrderItemVO();
 		

@@ -27,6 +27,7 @@ public class OrderItemJNDIDAO implements OrderItemDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO order_item (order_id, memo, created_datetime, updated_datetime)VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT order_item_id, order_id, memo, created_datetime, updated_datetime FROM order_item order by order_item_id";
 	private static final String GET_ALL_ORDERID_STMT = "SELECT distinct oi.order_id FROM order_item oi order by order_id";
+	private static final String GET_ALL_ORDERITIEMLIST_STMT = "SELECT order_item_id, order_id, memo, created_datetime, updated_datetime FROM order_item where order_id = ?";
 	private static final String GET_ONE_STMT = "SELECT order_item_id, order_id, memo, created_datetime, updated_datetime FROM order_item where order_item_id = ?";
 	private static final String DELETE = "DELETE FROM order_item where order_item_id =?";
 	private static final String UPDATE = "UPDATE order_item set order_id=?, memo=?, created_datetime=?, updated_datetime=? where order_item_id =?";
@@ -66,9 +67,8 @@ public class OrderItemJNDIDAO implements OrderItemDAO_interface {
 
 			pstmt.setInt(1, orderItemVO.getOrderId());
 			pstmt.setString(2, orderItemVO.getMemo());
-			pstmt.setTimestamp(3, orderItemVO.getCreatedDatetime());
-			pstmt.setTimestamp(4, orderItemVO.getUpdatedDatetime());
-			pstmt.setInt(5, orderItemVO.getOrderItemId());
+			pstmt.setTimestamp(3, orderItemVO.getUpdatedDatetime());
+			pstmt.setInt(4, orderItemVO.getOrderItemId());
 
 			pstmt.executeUpdate();
 
@@ -202,6 +202,45 @@ public class OrderItemJNDIDAO implements OrderItemDAO_interface {
 	}
 	
 	
+	@Override
+	public List<OrderItemVO> getOrderItemListByOrderId(int orderId) {
+		List<OrderItemVO> list = new ArrayList<>(); // ???
+		OrderItemVO orderItemVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_ORDERITIEMLIST_STMT);
+			rs = pstmt.executeQuery();
+			
+			pstmt.setInt(1, orderId);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				orderItemVO = new OrderItemVO();
+				orderItemVO.setOrderItemId(rs.getInt("order_item_id"));
+				orderItemVO.setOrderId(rs.getInt("order_id"));
+				orderItemVO.setMemo(rs.getString("memo"));
+				orderItemVO.setCreatedDatetime(rs.getTimestamp("created_datetime"));
+				orderItemVO.setUpdatedDatetime(rs.getTimestamp("updated_datetime"));
+				list.add(orderItemVO);
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured." + se.getLocalizedMessage());
+
+		} finally {
+			close(rs, pstmt, con);
+		}
+
+		return list;
+	}
+	
 	public static void close(ResultSet rs, PreparedStatement pstmt, Connection con) {
 		if (rs != null) {
 			try {
@@ -233,10 +272,6 @@ public class OrderItemJNDIDAO implements OrderItemDAO_interface {
 		close(null, null, con);
 	}
 
-	@Override
-	public List<OrderItemVO> getOrderItemListByOrderId(int orderId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 }
